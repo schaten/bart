@@ -9,7 +9,11 @@ URL:            https://mrirecon.github.io/bart
 VCS:            {{{ git_dir_vcs }}}
 Source0:        {{{ git_dir_pack source_name=libbart-devel dir_name=libbart-devel }}}
 
+%if 0%{?rhel} == 07
+BuildRequires:  fftw-devel, lapack-devel, openblas-devel, atlas-devel, libpng-devel, devtoolset-7-toolchain, devtoolset-7-libatomic-devel
+%else
 BuildRequires:  gcc, make, fftw-devel, lapack-devel, openblas-devel, atlas-devel, libpng-devel
+%endif
 
 %description
 The Berkeley Advanced Reconstruction Toolbox (BART) is a free and open-source image-reconstruction framework for Computational Magnetic Resonance Imaging.
@@ -23,6 +27,12 @@ This package provides headers and static libraries.
 {{{ git_dir_setup_macro dir_name=libbart-devel }}}
 
 %build
+%if 0%{?rhel} == 07
+
+. /opt/rh/devtoolset-7/enable
+
+%endif
+
 make PARALLEL=1
 
 %install
