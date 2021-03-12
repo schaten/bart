@@ -20,7 +20,7 @@ The Berkeley Advanced Reconstruction Toolbox (BART) is a free and open-source im
 
 This package provides headers and static libraries. 
 
-# I suppose the binary shouldn't contain debug symbols by default
+# I suppose the binary shouldn't contain debug symbols by default 
 %global debug_package %{nil}
 
 %prep
